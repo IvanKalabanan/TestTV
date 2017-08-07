@@ -1,10 +1,8 @@
 package com.ivacompany.testtv.domain.interactors.impl;
 
 import com.ivacompany.testtv.domain.interactors.interfaces.TelecastInteractor;
-import com.ivacompany.testtv.domain.models.Telecast;
+import com.ivacompany.testtv.domain.models.BaseModel;
 import com.ivacompany.testtv.domain.repository.APICalls;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,6 +14,10 @@ import retrofit2.Response;
 
 public class TelecastInteractorImpl implements TelecastInteractor {
 
+    public static final int NEXT_PAGE = 1;
+    public static final int PREVIOUS_PAGE = -1;
+    public static final int DEFAULT_PAGE = 0;
+
     private APICalls calls;
 
     public TelecastInteractorImpl(APICalls calls) {
@@ -24,16 +26,16 @@ public class TelecastInteractorImpl implements TelecastInteractor {
 
     @Override
     public void getTelecast(String uuid, int borderId, int direction, final TelecastRetrieveListener telecastRetrieveListener) {
-        calls.getTelecasts(uuid, borderId, direction).enqueue(new Callback<List<Telecast>>() {
+        calls.getTelecasts(uuid, borderId, direction).enqueue(new Callback<BaseModel>() {
 
             @Override
-            public void onResponse(Call<List<Telecast>> call, Response<List<Telecast>> response) {
+            public void onResponse(Call<BaseModel> call, Response<BaseModel> response) {
                 telecastRetrieveListener.onRetrieve(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Telecast>> call, Throwable t) {
-
+            public void onFailure(Call<BaseModel> call, Throwable t) {
+                telecastRetrieveListener.onFailure();
             }
         });
     }

@@ -15,6 +15,8 @@ public class Telecast {
     @SerializedName("icon")
     private String iconUrl;
 
+
+
     public int getId() {
         return id;
     }

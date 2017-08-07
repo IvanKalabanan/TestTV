@@ -2,9 +2,7 @@ package com.ivacompany.testtv.domain.repository;
 
 
 import com.ivacompany.testtv.domain.Utils.Constants;
-import com.ivacompany.testtv.domain.models.Telecast;
-
-import java.util.List;
+import com.ivacompany.testtv.domain.models.BaseModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,7 +15,7 @@ import retrofit2.http.Query;
 public interface APICalls {
 
     @GET("/demo")
-    Call<List<Telecast>> getTelecasts(
+    Call<BaseModel> getTelecasts(
             @Query(Constants.SERIAL_NUMBER) String uuid,
             @Query(Constants.BORDER_ID) int borderId,
             @Query(Constants.DIRECTION) int direction);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="@dimen/eight_dp"
+        android:background="@color/colorItemBackground">
+
+        <ImageView
+            android:id="@+id/telecastPhotoIv"
+            android:layout_width="@dimen/sixty_dp"
+            android:layout_height="@dimen/sixty_dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tool:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/telecastNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tool:text="Vse byde dobre"
+            app:layout_constraintBottom_toTopOf="@+id/nextTelecast"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/telecastPhotoIv"
+            android:textColor="@android:color/white"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="@dimen/eight_dp"/>
+
+        <TextView
+            android:id="@+id/nextTelecast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/colorItemNextTelecast"
+            android:lines="1"
+            app:layout_constraintTop_toBottomOf="@+id/telecastNameTv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/telecastNameTv"
+            app:layout_constraintRight_toRightOf="parent"
+            tool:text="next: papamericano"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

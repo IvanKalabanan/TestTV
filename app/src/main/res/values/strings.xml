@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestTV</string>
+    <string name="server_occurred_problem">Server  problem occurred</string>
 </resources>

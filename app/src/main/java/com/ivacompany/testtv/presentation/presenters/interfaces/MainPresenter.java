@@ -10,10 +10,26 @@ import java.util.List;
 
 public interface MainPresenter {
 
-    void getTelecast(String uuid);
+    void nextTelecastPage();
+
+    void refreshTelecast();
+
+    void checkRecyclerViewPagination(int lastVisibleItemPosition);
+
+    void checkFloatingButtonVisibilityState(int firstVisibleItemPosition, int lastVisibleItemPosition);
 
     interface View {
-        void showTelecast(List<Telecast> telecastList);
+        void showTelecast(List<Telecast> telecastList, boolean isAppendList);
+
+        void showProgress();
+
+        void hideProgress();
+
+        void showError();
+
+        void showScrollBt();
+
+        void hideScrollBt();
     }
 
 }
