@@ -19,7 +19,7 @@ public class MainPresenterImpl implements MainPresenter {
     private int lastItemId;
     private int itemsCount = 0;
 
-    private boolean isScrollButtonShow;
+    private boolean isRetrieveDataNow;
 
     public MainPresenterImpl(View view, String uuid, APICalls calls) {
         this.view = view;
@@ -37,6 +37,7 @@ public class MainPresenterImpl implements MainPresenter {
                 itemsCount += baseModel.getItemsNumber();
                 lastItemId = baseModel.getItems().get(baseModel.getItems().size() - 1).getId();
                 view.showTelecast(baseModel.getItems(), true);
+                isRetrieveDataNow = false;
             }
 
             @Override
@@ -67,16 +68,18 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void checkRecyclerViewPagination(int lastVisibleItemPosition) {
-        if(itemsCount == lastVisibleItemPosition + 2) {
+        if(itemsCount == lastVisibleItemPosition + 1 && !isRetrieveDataNow) {
+            isRetrieveDataNow = true;
             nextTelecastPage();
         }
     }
 
     @Override
     public void checkFloatingButtonVisibilityState(int firstVisibleItemPosition, int lastVisibleItemPosition) {
-        if (lastVisibleItemPosition > 15 && !isScrollButtonShow) {
+        // 15 is a border for show/hide floating button
+        if (lastVisibleItemPosition > 15) {
             view.showScrollBt();
-        } else if (firstVisibleItemPosition <= 15 && isScrollButtonShow) {
+        } else if (firstVisibleItemPosition <= 15) {
             view.hideScrollBt();
         }
     }

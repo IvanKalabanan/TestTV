@@ -41,6 +41,16 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
                 RestAPICommunicator.getInstance().getCalls()
         );
         initSwipeToRefresh();
+        initListeners();
+    }
+
+    private void initListeners() {
+        binding.floatingBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.recyclerView.scrollToPosition(0);
+            }
+        });
     }
 
     @Override
@@ -87,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 presenter.checkRecyclerViewPagination(layoutManager.findLastVisibleItemPosition());
-                if (dy > 0) {
+                if (dy < 0) {
                     presenter.checkFloatingButtonVisibilityState(
                             layoutManager.findFirstVisibleItemPosition(),
                             layoutManager.findLastVisibleItemPosition());
